@@ -14,7 +14,7 @@ int main() {
 
     int populacao1, populacao2, turistico1, turistico2; // Inicialização das variáveis do tipo int.
 
-    float area1, area2, pib1, pib2; // Inicialização das variáveis do tipo float.
+    float area1, area2, pib1, pib2, densidade1, densidade2, pibPerCapita1, pibPerCapita2; // Inicialização das variáveis do tipo float.
     
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
@@ -42,6 +42,10 @@ int main() {
 
     printf("Digite quantos pontos turísticos tem a cidade: ");
     scanf("%d", &turistico1); // Atribui o valor do número de pontos turísticos à variável turistico1. O %d lê um número inteiro.
+
+    densidade1 = (float) populacao1 / area1; // Cálculo da densidade populacional. A densidade é calculada dividindo a população pela área.
+
+    pibPerCapita1 = pib1 * 1000000000  / populacao1; // Cálculo do PIB per capita. O PIB é multiplicado cem milhões e dividido pela população.
     
     // Repetir o processo para a segunda carta:
     printf("\nSegunda carta do Super Trunfo!\nEscolha a letra do estado: ");
@@ -67,13 +71,17 @@ int main() {
     printf("Digite quantos pontos turísticos tem a cidade: ");
     scanf("%d", &turistico2);
 
+    densidade2 = (float) populacao2 / area2;
+
+    pibPerCapita2 = pib2 * 1000000000 / populacao2;
+
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
 
-    printf("\nDados da primeira carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\n", estado1, codigo1, cidade1, populacao1, area1, pib1, turistico1); // Exibe os dados da primeira carta cadastrada. O %.2f formata o número de ponto flutuante para exibir duas casas decimais.
+    printf("\nDados da primeira carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n", estado1, codigo1, cidade1, populacao1, area1, pib1, turistico1, densidade1, pibPerCapita1); // Exibe os dados da primeira carta cadastrada. O %.2f formata o número de ponto flutuante para exibir duas casas decimais.
 
-    printf("\nDados da segunda carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\n", estado2, codigo2, cidade2, populacao2, area2, pib2, turistico2); // Exibe os dados da segunda carta cadastrada.
+    printf("\nDados da segunda carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n", estado2, codigo2, cidade2, populacao2, area2, pib2, turistico2, densidade2, pibPerCapita2); // Exibe os dados da segunda carta cadastrada.
 
     return 0;
 }
