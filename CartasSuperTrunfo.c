@@ -12,9 +12,10 @@ int main() {
 
     char estado1, estado2, codigo1[5], codigo2[5], cidade1[50], cidade2[50], buffer[4]; // Inicialização das variáveis do tipo char, string e buffer. O buffer é utilizado apenas como armazenamento temporário.
 
-    int populacao1, populacao2, turistico1, turistico2; // Inicialização das variáveis do tipo int.
+    int turistico1, turistico2; // Inicialização das variáveis do tipo int.
+    unsigned long int populacao1, populacao2; // Inicialização das variáveis do tipo unsigned long int.
 
-    float area1, area2, pib1, pib2, densidade1, densidade2, pibPerCapita1, pibPerCapita2; // Inicialização das variáveis do tipo float.
+    float area1, area2, pib1, pib2, densidade1, densidade2, pibPerCapita1, pibPerCapita2, superPoder1, superPoder2; // Inicialização das variáveis do tipo float.
     
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
@@ -32,7 +33,7 @@ int main() {
     scanf(" %[^\n]", &cidade1);  // O %[^\n] lê uma string até encontrar um caractere de nova linha, permitindo que o nome da cidade contenha espaços.
 
     printf("Digite a quantidade de habitantes da cidade: ");
-    scanf("%d", &populacao1); // Atribui o valor da quantidade de habitantes à variável populacao1. O %d lê um número inteiro.
+    scanf("%lu", &populacao1); // Atribui o valor da quantidade de habitantes à variável populacao1. O %d lê um número inteiro.
 
     printf("Digite a área da cidade: ");
     scanf("%f", &area1); // Atribui o valor da área à variável area1. O %f lê um número de ponto flutuante.
@@ -60,7 +61,7 @@ int main() {
     scanf(" %[^\n]", &cidade2);
 
     printf("Digite a quantidade de habitantes da cidade: ");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Digite a área da cidade: ");
     scanf("%f", &area2);
@@ -75,13 +76,40 @@ int main() {
 
     pibPerCapita2 = pib2 * 1000000000 / populacao2;
 
+    // Calculo do Super Poder:
+
+    superPoder1 = (populacao1 + area1 + pib1 + pibPerCapita1 + turistico1 + ( 1 / densidade1)) / 10000; // Cálculo do super poder da primeira carta. O super poder é a soma de todos os atributos da cidade, incluindo a densidade populacional.
+    superPoder2 = (populacao2 + area2 + pib2 + pibPerCapita2 + turistico2 + ( 1 / densidade2)) / 10000; // Cálculo do super poder da segunda carta.
+
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
 
-    printf("\nDados da primeira carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n", estado1, codigo1, cidade1, populacao1, area1, pib1, turistico1, densidade1, pibPerCapita1); // Exibe os dados da primeira carta cadastrada. O %.2f formata o número de ponto flutuante para exibir duas casas decimais.
+    printf("\nDados da primeira carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder: %.2f\n", estado1, codigo1, cidade1, populacao1, area1, pib1, turistico1, densidade1, pibPerCapita1,superPoder1); // Exibe os dados da primeira carta cadastrada. O %.2f formata o número de ponto flutuante para exibir duas casas decimais.
 
-    printf("\nDados da segunda carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n", estado2, codigo2, cidade2, populacao2, area2, pib2, turistico2, densidade2, pibPerCapita2); // Exibe os dados da segunda carta cadastrada.
+    printf("\nDados da segunda carta\nEstado: %c\nCódigo: %s\nNome da cidade: %s\nPopulação: %d\nÁrea: %.2f km²\nPIB: %.2f Bilhões de reais\nNúmero de Pontos Turísticos: %d\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder: %.2f\n", estado2, codigo2, cidade2, populacao2, area2, pib2, turistico2, densidade2, pibPerCapita2, superPoder2); // Exibe os dados da segunda carta cadastrada.
+
+    // Comparação das cartas:
+    short int comparaPopulacao, comparaArea, comparaPib, comparaTuristico, comparaDensidade, comparaPibPerCapita, comparaSuperPoder; // Inicialização das variáveis de comparação.
+
+    comparaPopulacao = populacao1 > populacao2;
+    comparaArea = area1 > area2;
+    comparaPib = pib1 > pib2;
+    comparaTuristico = turistico1 > turistico2;
+    comparaDensidade = densidade1 > densidade2;
+    comparaPibPerCapita = pibPerCapita1 > pibPerCapita2;
+    comparaSuperPoder = superPoder1 > superPoder2;
+
+    // Exibição dos resultados da comparação:
+    printf("\nResultados da comparação:\nSe resposta for 1, a primeira carta é melhor. Se for 0, a segunda carta é melhor.\n");
+    printf("População: %d\n", comparaPopulacao);
+    printf("Área: %d\n", comparaArea);
+    printf("PIB: %d\n", comparaPib);
+    printf("Número de pontos turísticos: %d\n", comparaTuristico);
+    printf("Densidade populacional: %d\n", comparaDensidade);
+    printf("PIB per capita: %d\n", comparaPibPerCapita);
+    printf("Super Poder: %d\n", comparaSuperPoder);
+
 
     return 0;
 }
